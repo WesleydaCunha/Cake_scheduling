@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '@/lib/axios'; // Ajuste o caminho conforme necessário
+import { api } from '@/lib/axios'; 
 
 export function useAuth() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);

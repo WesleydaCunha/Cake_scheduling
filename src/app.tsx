@@ -7,10 +7,12 @@ import { RegisterUser } from "./pages/register_user";
 import { Home } from "./pages/home";
 import { ThemeProvider } from '@/context/ThemeContext';
 import { Toaster } from '@/components/ui/toaster';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { DateProvider } from '@/context/DateContext';
 import { SidebarProvider } from '@/context/SidebarContext';
 import { Model } from "./pages/home/model";
+//import { ModelProvider } from '@/context/ModelContext';
+
 
 
 const router = createBrowserRouter([
@@ -46,7 +48,9 @@ export function App() {
     <ThemeProvider>
       <SidebarProvider>
         <DateProvider>
+          
           <RouterProvider router={router} />
+          
         </DateProvider>
       </SidebarProvider>
       <Toaster />

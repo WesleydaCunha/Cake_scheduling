@@ -1,16 +1,16 @@
 //import { useContext, useState } from 'react';
 
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/pages/global/Sidebar';
 //import { Toolbar } from '@material-ui/core';
 import { Separator } from "@/components/ui/separator";
 
 //import { Button } from '@/components/ui/button';
 //import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-
+import { ListModels } from '@/components/pages/models/Listmodels';
 //import { useDate } from '@/context/DateContext';
 //import { IoAddCircleOutline } from "react-icons/io5";
-import { Navbar } from "@/components/Navbar";
-import { CreateModel } from '@/components/CreateModel';
+import { Navbar } from "@/components/pages/global/Navbar";
+import { CreateModel } from '@/components/pages/models/CreateModel';
 
 
 
@@ -24,6 +24,9 @@ export function Model() {
                 <Separator className='mb-1 bgc' />
                 <div className="flex p-3">
                     <CreateModel />
+                </div>
+                <div className='p-4'>
+                    <ListModels />
                 </div>
                 
             </main>

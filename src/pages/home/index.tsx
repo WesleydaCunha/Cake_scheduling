@@ -1,17 +1,17 @@
 import { useContext } from 'react';
 import { ThemeContext } from '@/context/ThemeContext';
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/pages/global/Sidebar';
 //import { Toolbar } from '@material-ui/core';
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Calendar } from "@/components/ui/calendar";
-import { AcceptedOrder } from '@/components/AcceptedOrder';
-import { PendingOrder } from '@/components/PendingOrder';
-import { CanceledOrder } from '@/components/CanceledOrder';
-import { DeliveredOrder } from '@/components/DeliveredOrder';
+import { AcceptedOrder } from '@/components/pages/scheduling/AcceptedOrder';
+import { PendingOrder } from '@/components/pages/scheduling/PendingOrder';
+import { CanceledOrder } from '@/components/pages/scheduling/CanceledOrder';
+import { DeliveredOrder } from '@/components/pages/scheduling/DeliveredOrder';
 import { useDate } from '@/context/DateContext';
-import { SheetDemo } from '@/components/CreateScheduling';
-import { Navbar } from '@/components/Navbar';
+import { SheetDemo } from '@/components/pages/scheduling/CreateScheduling';
+import { Navbar } from '@/components/pages/global/Navbar';
 
 
 export function Home() {
