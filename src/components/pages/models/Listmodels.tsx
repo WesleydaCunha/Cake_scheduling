@@ -28,13 +28,18 @@ import {
     TableRow,
 } from "@/components/ui/table";
 
+
+
+interface ListModelsProps {
+    refreshKey: number;
+}
 interface Model {
     id: number;
     cake_name: string;
     image: string;
 }
 
-export function ListModels() {
+export function ListModels({ refreshKey }: ListModelsProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const [models, setModels] = useState<Model[]>([]);
     const [sorting, setSorting] = useState<SortingState>([]);
@@ -42,7 +47,16 @@ export function ListModels() {
     useEffect(() => {
         const fetchModels = async () => {
             try {
-                const response = await api.get("cake/models");
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    console.error('No token found');
+                    return;
+                }
+                const response = await api.get("cake/models", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 setModels(response.data);
             } catch (error) {
                 console.error('Failed to fetch models:', error);
@@ -50,7 +64,7 @@ export function ListModels() {
         };
 
         fetchModels();
-    }, []);
+    }, [refreshKey]);
 
     const filteredModels = useMemo(() => models.filter(model =>
         model.id.toString().includes(searchTerm.toLowerCase()) ||
@@ -114,7 +128,7 @@ export function ListModels() {
             sorting,
         },
     });
-
+     
     return (
         <Card className="p-4 shadow-lg">
             <div className="p-4">

@@ -6,7 +6,6 @@ import {
     HiCake,
 } from "react-icons/hi";
 import { Separator } from "@/components/ui/separator";
-import { Card } from "@/components/ui/card";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { useNavigate, useLocation } from "react-router-dom";
 

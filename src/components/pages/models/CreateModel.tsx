@@ -18,12 +18,13 @@ import { Input } from "@/components/ui/input";
 import { api } from '@/lib/axios';
 import { toast } from '@/components/ui/use-toast';
 
+interface CreateModelProps {
+    onModelCreated: () => void;  // Função de callback
+}
 
-
-export function CreateModel() {
+export function CreateModel({ onModelCreated }: CreateModelProps) {
     const [nameModel, setNameModel] = useState<string>('');
     const [imageURL, setImageURL] = useState<string | null>(null);
-   
     const [submitError, setSubmitError] = useState<string | null>(null);
 
    
@@ -40,18 +41,30 @@ export function CreateModel() {
         }
         setSubmitError(null);
 
+        
         try {
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                return;
+            }
             await api.post('cake/models/register', {
                 cake_name: nameModel,
-                image: imageURL
+                image: imageURL,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
             toast({
                 title: "Sucesso!",
                 description: "Modelo cadastrado com sucesso"
             });
-
+            
             setNameModel('');
             setImageURL(null);
+            onModelCreated();
         } catch (error) {
             setSubmitError('Ocorreu um problema ao registrar o Modelo. Tente novamente mais tarde, se persistir contate o suporte!');
             toast({

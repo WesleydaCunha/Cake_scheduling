@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "@radix-ui/react-separator";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { SelectDemo } from '@/components/pages/scheduling/SelectDemo';
+import { SelectModel } from '@/components/pages/scheduling/SelectModel';
 import { useState } from "react";
-import { User } from '@/components/pages/scheduling/SelectDemo';
+import { User } from '@/components/pages/scheduling/SelectModel';
 
 export function SheetDemo() {
     const [selectedUser, setSelectedUser] = useState<User | undefined>(); 
@@ -43,7 +43,7 @@ export function SheetDemo() {
                     <div className="flex ">
                         <Label htmlFor="name" className="p-2.5">Cliente</Label>
                         <div className="ms-2">
-                            <SelectDemo onSelect={handleSelect} />
+                            <SelectModel onSelect={handleSelect} />
                         </div>
                     </div>
                     {!selectedUser ? (

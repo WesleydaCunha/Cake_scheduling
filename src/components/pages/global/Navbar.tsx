@@ -55,8 +55,8 @@ export function Navbar() {
                 <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Perfil</DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout}>
-                    Log out
+                <DropdownMenuItem  onClick={handleLogout}>
+                    Sair
                     <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
             </DropdownMenuContent>

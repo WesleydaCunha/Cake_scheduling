@@ -1,4 +1,4 @@
-import MultipleSelector, { Option } from '@/components/ui/multiple-selector';
+import MultipleSelector, { Option } from '@/components/pages/global/multiple-selector';
 import { useEffect, useState } from 'react';
 import { api } from '@/lib/axios';
 
@@ -9,7 +9,7 @@ export interface User {
     phone: string;
 }
 
-export function SelectDemo({ onSelect }: { onSelect?: (selected: User | undefined) => void }) {
+export function SelectModel({ onSelect }: { onSelect?: (selected: User | undefined) => void }) {
     const [options, setOptions] = useState<Option[]>([]);
     const [users, setUsers] = useState<User[]>([]); 
 

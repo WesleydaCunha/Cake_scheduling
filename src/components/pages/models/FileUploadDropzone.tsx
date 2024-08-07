@@ -19,6 +19,8 @@ interface FileUploadDropzoneProps {
     onUploadURLChange: (url: string | null) => void;
 }
 
+
+
 export const FileUploadDropzone: React.FC<FileUploadDropzoneProps> = ({ onUploadURLChange }) => {
     const [files, setFiles] = useState<FileWithUUID[]>([]);
     const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -42,10 +44,18 @@ export const FileUploadDropzone: React.FC<FileUploadDropzoneProps> = ({ onUpload
         setUploadURL(null);
 
         try {
+            console.log('Starting upload...');
             const fileNameWithUUID = `${uuidv4()}-${file.name}`;
+            console.log(`Uploading file: ${fileNameWithUUID}`);
+
             const url = await uploadFile(fileNameWithUUID, file);
-            setUploadURL(url);
-            setFiles((prevFiles) => [...prevFiles, { uuid: fileNameWithUUID, url, file }]);
+            if (url) {
+                console.log(`File uploaded successfully: ${url}`);
+                setUploadURL(url);
+                setFiles((prevFiles) => [...prevFiles, { uuid: fileNameWithUUID, url, file }]);
+            } else {
+                throw new Error('Upload failed: Invalid URL');
+            }
         } catch (err) {
             console.error('Upload failed:', err);
             setUploadURL(null);
@@ -69,7 +79,12 @@ export const FileUploadDropzone: React.FC<FileUploadDropzoneProps> = ({ onUpload
     };
 
     const onDrop = (acceptedFiles: File[] | null) => {
-        acceptedFiles?.[0] && handleUpload(acceptedFiles[0]);
+        if (acceptedFiles?.[0]) {
+            console.log('File accepted for upload:', acceptedFiles[0]);
+            handleUpload(acceptedFiles[0]);
+        } else {
+            console.error('No file accepted for upload.');
+        }
     };
 
     return (
